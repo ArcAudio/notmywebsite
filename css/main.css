@@ -1,0 +1,90 @@
+body, html {
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Source Code Pro', monospace;
+  color: #FFF;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #000;
+  height: 60px;
+  width: 100vw;
+  color: #69ff47;
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+container {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: absolute;
+      -ms-flex-align: absolute;
+          align-items: absolute;
+}
+
+svg {
+  width: 100%;
+  z-index: -1;
+  overflow: visible !important;
+  position: absolute;
+  z-index: 0;
+}
+
+panel {
+  width: 100vw;
+  height: 100vh;
+}
+
+section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.panel-1 {
+  background: #000;
+}
+
+.panel-2 {
+  background: #000;
+}
+
+h1 {
+  font-size: 2rem;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 2rem;
+}
+/*# sourceMappingURL=main.css.map */

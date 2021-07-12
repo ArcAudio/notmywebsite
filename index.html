@@ -1,0 +1,506 @@
+<!DOCTYPE html> 
+<!-- this was made by tying !  -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<link rel="stylesheet" href="css/main.css">
+<body>
+
+    <canvas></canvas>
+    <main class="container">
+      <header>
+        <div class="logo">404: Not found...</div>
+      </header>
+      <section class="panel-1">
+        <h1>Hi</h1>
+        
+      </section>
+      <section class="panel-2">
+        <h1>Look</h1>
+      </section>
+    </main>
+    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/2.0.0/pixi.js"> </script>
+<script src="scripts/ScrambleTextPlugin.min.js"></script>
+
+<script>
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+const container = document.querySelector(".container");
+const randomColor = gsap.utils.random(
+  [
+    "#F9E445",
+    "#E6B074",
+    "#CC4461",
+    "#72316f",
+    "#311569",
+    "#F9E46e",
+    "#E6B05f",
+    "#CC4473",
+    "#723168",
+    "#311572",
+    "#F9E464",
+    "#E6B06c",
+    "#CC4475"
+    // "#006B62",
+    // "#000",
+    // "#47EEE0",
+    // "#00EBD7",
+    // "#000",
+    // "#206B65",
+    // "#000",
+    // "#00BDAE",
+    // "fff"
+  ],
+  true
+);
+
+const randomWord = gsap.utils.random(
+  [
+    "$variable",
+    "304: Word Not `{randomColor}`" ,
+    "Balls",
+    "Finger",
+    "Melon",
+    "Chrysanthemum",
+    "Mitnick",
+    "Plants",
+    "Regal",
+    "Hammer",
+    "Website",
+    "Nougat",
+    "Crème Brûlée",
+  ],
+  true
+);
+
+const rscale = 1;
+const random1 = gsap.utils.random(10, 30, 2, true);
+const random2 = gsap.utils.random(20, 50, 2, true);
+const random3 = gsap.utils.random(5, 10, 2, true);
+
+
+let createPrevFlag = false;
+let panelCreated = false;
+let panelNum = 3;
+
+ScrollTrigger.refresh();
+
+function createCircle(parent, r, panel) {
+  const circle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle"
+  );
+  parent.appendChild(circle);
+
+  gsap.set(circle, {
+    attr: {
+      class: "circ",
+      r
+    },
+    x: 50,
+    y: 50,
+    fill: randomColor,
+    stroke: "none",
+    //transformOrigin: "center"
+  });
+  
+  // Can't I just whack all the logic to add scrolltriggers to individual circles here?
+   gsap.timeline({
+        scrollTrigger: {
+          trigger: panel,
+          //pin: panel,
+          start: "top top",
+          //markers: true,
+          scrub: 1
+        }
+      })
+        .from(circle, {            
+        transformOrigin: "center random(0, 60)%",
+        scale: 0.1,
+        stagger: 2,
+        //duration: 8,
+        rotation: "random(30, 60)",
+        ease: "power4"
+      })
+      .to(circle, {            
+        transformOrigin: "center random(30, 90)%",
+        scale: 6,
+        //duration: 8,
+        delay: 0.5,
+        stagger: 1,
+        rotation: "random(30, 60)",
+        ease: "power4"
+      })
+      .to(circle, {
+        opacity: 0.5 // looks weird with an elastic ease
+      }, 0) ;
+      
+      gsap.to("#scramble", {duration: 2, scrambleText:{text:createRandomSentance(), chars:"0123456789", revealDelay:0.25, tweenLength:false}});
+    
+  return circle;
+}
+
+function createRandomSentance()
+{
+  var paneltext;
+  var rand = Math.floor(Math.random()*23);
+  var randword = randomWord();
+  if (rand === 0)
+    {
+      paneltext = `I don't wanna make a ${randword} for you`;
+    }
+  
+    if (rand === 1)
+    {
+      paneltext = `I'm not interested in your $variable`;
+    }
+  
+    if (rand === 2)
+    {
+      paneltext = `I find it hard enough making my own $variable`;
+    }
+  
+    if (rand === 3)
+    {
+      paneltext = `What's popping ${randword}?`;
+    }
+  
+    if (rand === 4)
+    {
+      paneltext = `How are you anyway?`;
+    }
+  
+      if (rand === 5)
+    {
+      paneltext = `I don't ${randword} if you carry on ${randword}`;
+    }
+  
+      if (rand === 6)
+    {
+      paneltext = `There's no more ${randword}'s here to be found`;
+    }
+  
+       if (rand === 7)
+    {
+      paneltext = `Look if you really wanna contact me insert #contact page`;
+    }
+  
+       if (rand === 8)
+    {
+      paneltext = `I hope you weren't expecting something $variable`;
+    }
+  
+       if (rand === 9)
+    {
+      paneltext = `damn coding is hard, but $variable`;
+    }
+  
+      if (rand === 10)
+    {
+      paneltext = `do you ever find ${randword}, but $variable can be also be $varible`;
+    }
+  
+      if (rand === 11)
+    {
+      paneltext = `#00F`;
+    }
+  
+      if (rand === 12)
+    {
+      paneltext = `When ${randword} zombies arrive, quickly fax Pat Judge.`;
+    }
+  
+      if (rand === 13)
+    {
+      paneltext = `Error 403: Server heard you, but just doesn't care`;
+    }
+  
+      if (rand === 14)
+    {
+      paneltext = `do you ever feel like you've completey ruined your potential as a human? I do, but that's besides the point, how do you feel my little ${randword}?`;
+    }
+  
+      if (rand === 15)
+    {
+      paneltext = `Error 451: You dodgy bastard`;
+    }
+  
+      if (rand === 16)
+    {
+      paneltext = `Error 303: No I'm not selling Orwell`;
+    }
+  
+      if (rand === 17)
+    {
+      paneltext = `What if Norris wasn't so slow?`;
+    }
+  
+      if (rand === 18)
+    {
+      paneltext = `Why are you still here? Or are you trying to find my petition to rename hackers to crackheads`;
+    }
+  
+      if (rand === 19)
+    {
+      paneltext = `Why are you still here? Or are you trying to find my petition to rename sharding to pruning?`;
+    }
+  
+      if (rand === 20)
+    {
+      paneltext = `Hi agency person, no I don't want your #insert-death-sentance here`;
+    }
+  
+        if (rand === 21)
+    {
+      paneltext = `I don't know about you but css makes me want to repeatedly punch myself in the face`;
+    }
+  
+          if (rand === 22)
+    {
+      paneltext = `ywzw xcsb kaju kfht dvmf yunr qhlo qnal lvwq ltuz cubo uyho dqgw tbty oqvo aipz hasy htmg yjla uorc xbnv ahks wrrw iyqv tnfj hdpj xor`;
+    }
+  
+            if (rand === 23)
+    {
+      paneltext = `The answer's in the #00F`;
+    }
+  
+    //     if (rand === 12)
+    // {
+    //   paneltext = `do you know the smallest pangram?`;
+    // }
+  
+      //       if (rand === 14)
+    // {
+    //   paneltext = `is it..How quickly daft ${randword} Zebras Vex?`;
+    // }
+  
+    //    if (rand === 15)
+    // {
+    //   paneltext = `${randword} sphinx of black quartz, judge my vow?`;
+    // }
+  
+    //     if (rand === 16)
+    // {
+    //   paneltext = `Glib jocks quiz nymph to vex dwarf?`;
+    // }
+  
+  return paneltext;
+}
+
+const createPanel = (index, direction) => {
+    console.log('createPrevFlag: ', createPrevFlag);
+    const section = document.createElement("section");
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); //give viewbox
+
+    const h1 = document.createElement("h1");
+    if(direction === 1) {
+        container.appendChild(section);
+        section.appendChild(svg);
+        circle1 = createCircle(svg, random1, section); // hmm or should I pass in panel?
+        circle2 = createCircle(svg, random2, section);
+        circle3 = createCircle(svg, random3, section);
+        
+        circle4 = createCircle(svg, 5, section);
+        circle5 = createCircle(svg, 2, section);
+      
+        gsap.set(section, {
+    backgroundColor: randomColor,
+    className: "panel"
+  });
+  gsap.set(svg, {
+    attr: { viewBox: "0 0 102 102" }
+  });
+    } else if(direction === -1) {
+      // container.insertBefore(section,container.firstChild);
+      createPrevFlag = false;
+    }
+    section.appendChild(h1);
+  
+    h1.innerHTML = `Panel ${index}`;
+    h1.id = "scramble";
+  
+
+};
+
+
+ScrollTrigger.create({
+    trigger: document.body,
+    start: "top top",
+    end: "bottom bottom",
+    onUpdate: (self) => {
+        let progress = self.progress.toFixed(2);
+      
+        if (progress >= 0.1 && self.direction === 1) {
+          createPrevFlag = true;
+        }
+
+        if (progress >= 0.9 && self.direction === 1) {
+            createPanel(panelNum++, self.direction);
+            ScrollTrigger.refresh();
+        }
+        else if (createPrevFlag && progress <= 0.1 && self.direction === -1) {
+            console.log(progress, self.direction);
+            // createPanel(panelNum++, self.direction);
+            // ScrollTrigger.refresh();
+        }
+    },
+});
+
+
+const stage = new PIXI.Stage(0x0, true);
+const renderer = PIXI.autoDetectRenderer(window.innerWidth, window.innerHeight, {
+  view: document.querySelector('canvas'),
+});
+
+const uniforms = {
+  resolution: {
+    type: '2f',
+    value: {
+      x: window.innerWidth,
+      y: window.innerHeight,
+    },
+  },
+  alpha: {
+    type: '1f',
+    value: 1,
+  },
+  shift: {
+    type: '1f',
+    value: 1.6,
+  },
+  time: {
+    type: '1f',
+    value: 0,
+  },
+  speed: {
+    type: '2f',
+    value: {
+      x: 0.7,
+      y: 0.4,
+    },
+  },
+};
+
+const fragmentSrc = `
+precision mediump float;
+uniform vec2      resolution;
+uniform float     time;
+uniform float     alpha;
+uniform vec2      speed;
+uniform float     shift;
+
+#define PI 3.14159265359
+#define TWO_PI 6.28318530718
+
+float rand(vec2 n) {
+ return fract(cos(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+}
+
+float noise(vec2 n) {
+  const vec2 d = vec2(0.0, 1.0);
+  vec2 b = floor(n), f = smoothstep(vec2(0.0), vec2(1.0), fract(n));
+  return mix(mix(rand(b), rand(b + d.yx), f.x), mix(rand(b + d.xy), rand(b + d.yy), f.x), f.y);
+}
+
+float fbm(vec2 n) {
+  float total = 0.0, amplitude = 1.0;
+  for (int i = 0; i < 4; i++) {
+    total += noise(n) * amplitude;
+    n += n;
+    amplitude *= 0.5;
+  }
+  return total;
+}
+
+float circle(in vec2 _st, in float _radius){
+    vec2 dist = _st-vec2(0.5);
+	return 1.-smoothstep(_radius-(_radius*0.01),
+                         _radius+(_radius*0.01),
+                         dot(dist,dist)*4.0);
+}
+
+void main() {
+  vec2 st = gl_FragCoord.xy / resolution.xx;
+  
+      // Normalized pixel coordinates (from 0 to 1)
+  //st *= 1.5;
+  //st.x -= 0.39;
+  vec3 color = vec3(0.0);
+  float d = 0.0;
+
+  // Remap the space to -1. to 1.
+ // st = st *2.-1.;
+
+  // Number of sides of your shape
+  int N = 8;
+
+  // Angle and radius from the current pixel
+  float a = atan(st.x,st.y)+PI *  mod(time*0.2,1.0);
+  float r = TWO_PI/float(N) ;
+
+  // Shaping function that modulate the distance
+  d = cos(floor(.5+a/r)*r-a)*length(st);
+  
+  float e,f,g = 0.0;
+  
+  e = cos(floor(.5+a/r)*r-a)*length(st)*0.2;
+  
+  f = cos(floor(.5+a/r)*r-a)*length(st)*2.9;
+  
+  g = cos(floor(.5+a/r)*r-a)*length(st)*0.3;
+  
+
+  color = vec3(1.0-smoothstep(.4,.41,mod(d+(time*0.5),1.0)));
+  color -= vec3(1.0-smoothstep(.4,.41,mod(e+(time*0.5),1.0))).x;
+  
+  color += vec3(1.0-smoothstep(.4,.41,mod(f+(time*0.25),1.25))).x;
+  color -= vec3(1.0-smoothstep(.4,.41,mod(g+(time*0.25),1.25)));
+  
+  color += vec3(1.0-smoothstep(.4,.41,mod(d+(time*0.5),0.5)));
+  color -= vec3(1.0-smoothstep(.4,.41,mod(e+(time*0.5),0.5)));
+
+	//vec3 col = vec3(circle(p,0.5));
+  //vec3 col = 0.5 + 0.5*cos(time+p.xyx+vec3(0,2,4));
+  
+  gl_FragColor.xyz = color * 0.125;
+}
+`;
+
+ const filter = new PIXI.AbstractFilter(fragmentSrc.split('\n'), uniforms);
+
+ const bg = PIXI.Sprite.fromImage('https://s3-us-west-2.amazonaws.com/s.cdpn.io/167451/test_BG.jpg');
+bg.width = window.innerWidth;
+bg.height = window.innerHeight;
+bg.shader = filter;
+stage.addChild(bg);
+
+// const logo = PIXI.Sprite.fromImage('https://s3-us-west-2.amazonaws.com/s.cdpn.io/167451/pixiJsV2.png');
+// logo.x = window.innerWidth / 2;
+// logo.y = window.innerHeight / 2;
+// logo.anchor.set(0.5);
+// logo.blendMode = PIXI.blendModes.ADD;
+// stage.addChild(logo);
+
+function update(timestamp) {  
+  filter.uniforms.time.value = timestamp / 1000;
+  filter.syncUniforms();
+    
+  renderer.render(stage);
+        
+  requestAnimationFrame(update);
+}
+
+requestAnimationFrame(update);
+
+    </script>
+</body>
+</html>
